@@ -51,6 +51,8 @@ namespace Felipe_Pagliosa_PB.Controllers
         public ActionResult EditComentario(int id)
         {
             var comentario = ComentariosRepository.SelectComent(id);
+
+
             return View(comentario);
         }
 
