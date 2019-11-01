@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Felipe_Pagliosa_PB.Models.Comentario>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TextoComent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataComentario)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.NomeUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TextoComent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataComentario)
+            </td>
+            <td>
+                <a href="@Url.Action("LikeComentario","Comentario",new { idc = item.IdComentario, kek = false })" class="btn btn-info btm-sm" title="Curtir Comentário">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                </a>
+                @Html.DisplayFor(modelItem => item.NumCurtidasComent)
+            </td>
+            <td>
+                @if (((Felipe_Pagliosa_PB.Models.Usuario)Session["object"]).Id == item.IdUsuario)
+                {
+                    @Html.ActionLink("Editar comentário", "EditComentario", "Comentario", new { id = item.IdComentario, kek = false }, null)
+                    @Html.Label("|")
+                    @Html.ActionLink("Deletar comentário", "DeleteComentario", "Comentario", new { id = item.IdComentario, kek = false }, null)
+                }
+            </td>
+        </tr>
+    }
+
+</table>

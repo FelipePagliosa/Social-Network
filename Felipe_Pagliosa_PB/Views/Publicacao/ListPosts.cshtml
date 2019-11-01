@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Felipe_Pagliosa_PB.Models.Publicacao>
+
+@{
+    ViewBag.Title = "ListPosts";
+}
+
+<h2>ListPosts</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TextoPub)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagemPost)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TextoPub)
+            </td>
+            <td>
+                <img src="\UserImages\@Html.DisplayFor(modelItem => item.ImagemPost)" alt="Sample Photo" width="250" height="250" />
+            </td>
+            <td>
+                <button type="button" onclick="location.href='@Url.Action("LikePost","Publicacao",new { id = item.IdPost })'">Curtir</button>
+                @Html.DisplayFor(modelItem => item.NumCurtidasPost)
+                <button type="button" onclick="location.href='@Url.Action("Comentar","Comentario",new { id = item.IdPost })'">Comentar</button>
+            </td>
+            <td>
+                @Html.ActionLink("Editar Post", "EditPost", new { id = item.IdPost }) |
+
+                @Html.ActionLink("Deletar Post", "DeletePost", new { id = item.IdPost })
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Partial("_ComentariosPost", item.Comentario)
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    @Html.ActionLink("Voltar", "Welcome", "User", new { }, null)
+</div>
+

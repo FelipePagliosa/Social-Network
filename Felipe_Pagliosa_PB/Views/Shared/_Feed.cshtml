@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Felipe_Pagliosa_PB.Models.Post>
+
+@{
+    ViewBag.Title = "Feed ";
+}
+
+<h2>Feed de Notícias</h2>
+
+@if (TempData["alert"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"
+                aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>@TempData["alert"]</strong>
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TextoPub)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagemPost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataPost)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TextoPub)
+            </td>
+            <td>
+                <img src="\UserImages\@Html.DisplayFor(modelItem => item.ImagemPost)" alt="Sample Photo" width="250" height="200" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataPost)
+            </td>
+            <td>
+                <a href="@Url.Action("LikePost","Post",new { idp = item.IdPost, kek = false })" class="btn btn-info btm-sm" title="Curtir">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                </a>
+                @Html.DisplayFor(modelItem => item.NumCurtidasPost)
+                <p></p>
+                <button type="button" onclick="location.href='@Url.Action("Comentar","Comentario",new { id = item.IdPost, kek = false })'">Comentar</button>
+                <button type="button" onclick="location.href='@Url.Action("CompartilharPost","Post",new { id = item.IdPost})'">Compartilhar Post</button>
+                @if (item.IdPostOrigem > 0)
+                {
+                    <button type="button" onclick="location.href='@Url.Action("VerPostOriginal","Post",new { id = item.IdPostOrigem})'">Ver Post Original</button>
+                }
+            </td>
+            <td>
+                @if (((Felipe_Pagliosa_PB.Models.Usuario)Session["object"]).Id == item.IdUsuario)
+                {
+                    @Html.ActionLink("Editar Post", "EditPost", new { id = item.IdPost })
+                    @Html.Label("|")
+                    @Html.ActionLink("Deletar Post", "DeletePost", new { id = item.IdPost })
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Partial("_ComentariosPostFeed", item.Comentario.OrderByDescending(comentario => comentario.DataComentario))
+            </td>
+        </tr>
+    }
+</table>

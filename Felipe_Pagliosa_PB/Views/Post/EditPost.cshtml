@@ -1,0 +1,48 @@
+﻿@model Felipe_Pagliosa_PB.Models.Post
+
+@{
+    ViewBag.Title = "Editar Post";
+}
+
+<h2>Editar PostageM</h2>
+
+@using (Html.BeginForm("EditPost", "Post", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Publicacao</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IdPost)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TextoPub, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TextoPub, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TextoPub, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.ImagemPost, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div>
+                <img src="\UserImages\@Html.DisplayFor(model => model.ImagemPost)" alt="Sample Photo" width="250" height="250" />
+            </div>
+            <div class="col-md-10">
+                <input type="file" name="file" />
+                @Html.ValidationMessageFor(model => model.ImagemPost, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Welcome", "Usuario", new { }, null)
+</div>

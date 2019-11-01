@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Felipe_Pagliosa_PB.Models.Comentario>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TextoComent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataComentario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumCurtidasComent)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.NomeUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TextoComent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataComentario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumCurtidasComent)
+            </td>
+        </tr>
+    }
+
+</table>

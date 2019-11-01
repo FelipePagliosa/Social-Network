@@ -1,0 +1,44 @@
+﻿@model Felipe_Pagliosa_PB.Models.Publicacao
+
+
+@{
+    ViewBag.Title = "Post";
+}
+
+<h2>Post</h2>
+
+@using (Html.BeginForm("CreatePost", "Publicacao", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Publicacao</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.TextoPub, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.TextoPub, new { maxlength = 2000, height = "250", width = "300" })
+                @Html.ValidationMessageFor(model => model.TextoPub, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImagemPost, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="file" />
+                @Html.ValidationMessageFor(model => model.ImagemPost, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Publicar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Welcome", "User", new { }, null)
+</div>

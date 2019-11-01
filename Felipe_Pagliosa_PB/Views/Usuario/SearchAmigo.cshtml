@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Felipe_Pagliosa_PB.Models.Usuario>
+
+@{
+    ViewBag.Title = "Procurar Usuario";
+}
+
+
+
+<h2>Procure</h2>
+<span>Digite suas preferências:</span>
+@if (TempData["alert"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"
+                aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>@TempData["alert"]</strong>
+    </div>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="text" name="pesquisa">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preferencia1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preferencia2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preferencia3)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preferencia1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preferencia2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preferencia3)
+            </td>
+
+            <td>
+                <button type="button" onclick="location.href='@Url.Action("AddAmigo","Usuario",new { id = item.Id })'">Enviar pedido de amizade</button>
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Voltar", "Welcome", "Usuario", new { }, null)
+</div>

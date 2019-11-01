@@ -1,0 +1,28 @@
+﻿@model Felipe_Pagliosa_PB.Models.Usuario
+
+@{
+    ViewBag.Title = "Rede Social X";
+}
+
+
+<div class="jumbotron">
+    <h1>Home Page</h1>
+    <p class="lead">Seja bem vindo, @ViewBag.Usuario </p>
+</div>
+
+
+<div>
+    <button type="button" onclick="location.href='@Url.Action("CreatePost","Publicacao")'">Criar Post</button>
+</div>
+<div>
+    <button type="button" onclick="location.href='@Url.Action("ListPosts","Publicacao")'">Ver os seus posts</button>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Propósito</h2>
+        <p>
+            Esse projeto tem como objetivo criar uma rede social especificamente para o público geek, onde os tópicos abordados devem ser majoritáriamente sobre tecnologias, jogos, comics, animes e etc.
+        </p>
+    </div>
+</div>
