@@ -107,6 +107,7 @@ namespace Felipe_Pagliosa_PB.Controllers
             var resultado = ComentariosRepository.SelectComent(idc);
             Usuario teste = (Usuario)Session["object"];
 
+
             try {
                 if (CurtidasComentariosRepository.ChecarCurtidaComentario(idc,teste.Id) == false) {
                     ComentariosRepository.LikeComentario(resultado);
