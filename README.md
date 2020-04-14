@@ -1,8 +1,8 @@
 # Felipe_Pagliosa_PB
-Social Network
+# Social Network
 
 
-Web prototype of a social network using the .NET framework and the ASP.NET MVC structure, using the ADO.NET structure to control and acess the SQL database.
+## Web prototype of a social network using the .NET framework and the ASP.NET MVC structure, using the ADO.NET structure to control and acess the SQL database.
 
 -Complete user register and login;
 
@@ -19,7 +19,7 @@ Web prototype of a social network using the .NET framework and the ASP.NET MVC s
 -News feed with only your friend's posts.
 
 
-Protótipo Web de rede social utilizando o framework .NET e a estrutura ASP.NET MVC, utilizando ADO.NET como arquitetura para acessar o banco de dados SQL.
+## Protótipo Web de rede social utilizando o framework .NET e a estrutura ASP.NET MVC, utilizando ADO.NET como arquitetura para acessar o banco de dados SQL.
 
 -Cadastro e login completo de usuários; 
 
