@@ -1,5 +1,4 @@
-# Felipe_Pagliosa_PB
-# Social Network
+# Felipe_Pagliosa_PB Social Network
 
 
 ## Web prototype of a social network using the .NET framework and the ASP.NET MVC structure, using the ADO.NET structure to control and acess the SQL database.
